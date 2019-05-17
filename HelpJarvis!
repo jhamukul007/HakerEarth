@@ -1,0 +1,59 @@
+/* IMPORTANT: Multiple classes and nested static classes are supported */
+
+/*
+ * uncomment this if you want to read input.
+//imports for BufferedReader
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+//import for Scanner and other utility classes*/
+import java.util.*;
+
+
+// Warning: Printing unwanted or ill-formatted data to output will cause the test cases to fail
+
+class TestClass {
+    static String willRun(int data){
+        if(data<0){
+            return null;
+        }
+        Map<Integer,Integer> map=new HashMap<>();
+        int min=Integer.MAX_VALUE;
+        int max=Integer.MIN_VALUE;
+        while(data!=0){
+            int last=data%10;
+            data=data/10;
+            if(map.containsKey(last)){
+                return "NO";
+            }
+            else {
+            map.put(last,1);
+           
+            if(last>max){
+                max=last;
+            }
+            if(last<min && last<max){
+                min=last;
+            }
+            }
+        }
+        for(int i=min;i<=max;i++){
+            if(!map.containsKey(i)){
+                return "NO";
+            }
+        }
+        return "YES";
+        
+    }
+    public static void main(String args[] ) throws Exception {
+ 
+        Scanner s = new Scanner(System.in);
+       int numOfTestCase=s.nextInt();
+       for(int i=1;i<=numOfTestCase;i++){
+           int num=s.nextInt();
+           System.out.println(willRun(num));
+           
+       }
+
+    }
+}
